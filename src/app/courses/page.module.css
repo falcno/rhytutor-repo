@@ -1,0 +1,147 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  background-color: var(--surface-1);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-2);
+}
+
+@media (min-width: 768px) {
+  .filters {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: var(--background);
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.25rem;
+  flex: 1;
+  max-width: 400px;
+  gap: 0.75rem;
+}
+
+.searchIcon {
+  color: var(--text-muted);
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.instrumentFilter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filterIcon {
+  color: var(--text-muted);
+}
+
+.pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  background-color: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  background-color: var(--surface-3);
+  color: var(--foreground);
+}
+
+.pillActive {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--background);
+}
+
+.pillActive:hover {
+  background-color: var(--primary-hover);
+  color: var(--background);
+}
+
+.courseGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .courseGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .courseGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .courseGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--text-muted);
+  background-color: var(--surface-1);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--surface-3);
+}

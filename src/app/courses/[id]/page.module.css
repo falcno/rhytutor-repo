@@ -1,0 +1,285 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: var(--surface-1);
+  border-bottom: 1px solid var(--surface-2);
+  padding: 4rem 1.5rem;
+}
+
+.headerContent {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  background-color: var(--primary);
+  color: var(--background);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 800px;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+}
+
+.starIcon {
+  color: #f59e0b;
+  fill: #f59e0b;
+}
+
+.instructorLabel {
+  font-size: 0.875rem;
+}
+
+.instructorName {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.mainCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.sidebarCol {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .sidebarCol {
+    width: 360px;
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--surface-2);
+}
+
+.learningList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .learningList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.learningList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.checkIcon {
+  color: var(--secondary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.curriculumList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lessonItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--surface-1);
+  border: 1px solid var(--surface-2);
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s ease;
+}
+
+.lessonItem:hover {
+  background-color: var(--surface-2);
+}
+
+.lessonInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.lessonIcon {
+  color: var(--text-muted);
+}
+
+.lessonDuration {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.purchaseCard {
+  background-color: var(--surface-1);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-2);
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.previewImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.playOverlay:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.playIcon {
+  color: var(--foreground);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+.purchaseContent {
+  padding: 2rem;
+}
+
+.priceSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.priceLabel {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--foreground);
+}
+
+.purchaseBtn {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--background);
+  border: none;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+.purchaseBtn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.includes h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.includes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.includes li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}

@@ -1,0 +1,424 @@
+.playerContainer {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px); /* minus navbar */
+  background-color: var(--background);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .playerContainer {
+    flex-direction: row;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.videoHeader {
+  margin-bottom: 1rem;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  transition: color 0.2s ease;
+}
+
+.backBtn:hover {
+  color: var(--foreground);
+}
+
+.courseTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.videoWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tabsArea {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-1);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-2);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.tabList {
+  display: flex;
+  border-bottom: 1px solid var(--surface-2);
+  overflow-x: auto;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--foreground);
+}
+
+.tabActive {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tabContent {
+  padding: 1.5rem;
+}
+
+.materialsTab h3, .practiceTab h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.materialItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--surface-2);
+  border-radius: var(--radius-md);
+  margin-bottom: 0.5rem;
+}
+
+.materialIcon {
+  color: var(--secondary);
+}
+
+.materialItem span {
+  flex: 1;
+  font-weight: 500;
+}
+
+.downloadBtn {
+  background-color: transparent;
+  border: 1px solid var(--surface-3);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.downloadBtn:hover {
+  background-color: var(--surface-3);
+  color: var(--foreground);
+}
+
+.practiceHint {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.practiceForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fileDropZone {
+  position: relative;
+  border: 2px dashed var(--surface-3);
+  border-radius: var(--radius-md);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background-color: var(--surface-2);
+  transition: border-color 0.2s ease;
+}
+
+.fileDropZone:hover {
+  border-color: var(--primary);
+}
+
+.dropIcon {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.fileInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.noteInput {
+  background-color: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  color: var(--foreground);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+}
+
+.noteInput:focus {
+  border-color: var(--primary);
+}
+
+.submitBtn {
+  background-color: var(--primary);
+  color: var(--background);
+  border: none;
+  padding: 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  color: var(--secondary);
+  gap: 1rem;
+  text-align: center;
+}
+
+.sidebar {
+  width: 100%;
+  background-color: var(--surface-1);
+  border-left: 1px solid var(--surface-2);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 360px;
+    flex-shrink: 0;
+  }
+}
+
+.sidebarHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--surface-2);
+}
+
+.sidebarHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.lessonList {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.lessonItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--surface-2);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.lessonItem:hover {
+  background-color: var(--surface-2);
+}
+
+.lessonActive {
+  background-color: rgba(187, 134, 252, 0.1);
+}
+
+.lessonActive:hover {
+  background-color: rgba(187, 134, 252, 0.15);
+}
+
+.lessonStatus {
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.completedIcon {
+  color: var(--secondary);
+}
+
+.uncompletedCircle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--surface-3);
+  border-radius: 50%;
+}
+
+.lessonInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.lessonTitle {
+  color: var(--foreground);
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.lessonDuration {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.playingIcon {
+  color: var(--primary);
+  margin-left: 1rem;
+}
+
+.commentsTab {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.commentList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.commentItem {
+  background-color: var(--surface-2);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-3);
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.commentUser {
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.instructorBadge {
+  background-color: rgba(3, 218, 198, 0.15);
+  color: var(--secondary);
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.commentTime {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  margin-left: auto;
+}
+
+.commentText {
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.commentForm {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.commentInput {
+  flex: 1;
+  background-color: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  color: var(--foreground);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-full);
+  outline: none;
+}
+
+.commentInput:focus {
+  border-color: var(--primary);
+}
+
+.commentSubmitBtn {
+  background-color: var(--primary);
+  color: var(--background);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.commentSubmitBtn:hover {
+  background-color: var(--primary-hover);
+}
+
+.loginPrompt {
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--surface-2);
+  border-radius: var(--radius-md);
+}
