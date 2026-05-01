@@ -50,12 +50,14 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
         <div className={styles.headerContent}>
           <div className={styles.badge}>{course.instrument}</div>
           <h1 className={styles.title}>{course.title}</h1>
-          <p className={styles.subtitle}>Master {course.instrument} with our comprehensive guide designed for {course.difficulty.toLowerCase()} students.</p>
+          <p className={styles.subtitle}>
+            {t('courseDetail.subtitle').replace('{instrument}', course.instrument).replace('{difficulty}', course.difficulty.toLowerCase())}
+          </p>
           
           <div className={styles.meta}>
             <div className={styles.metaItem}>
               <Star size={18} className={styles.starIcon} />
-              <span>{course.rating} (1,234 reviews)</span>
+              <span>{course.rating} (1,234 {t('courseDetail.reviews')})</span>
             </div>
             <div className={styles.metaItem}>
               <span className={styles.instructorLabel}>{t('course.instructor')}:</span>
@@ -68,7 +70,7 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
       <div className={styles.content}>
         <div className={styles.mainCol}>
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>What you'll learn</h2>
+            <h2 className={styles.sectionTitle}>{t('courseDetail.whatYouWillLearn')}</h2>
             <ul className={styles.learningList}>
               <li><Check size={20} className={styles.checkIcon}/> Understand the fundamental techniques</li>
               <li><Check size={20} className={styles.checkIcon}/> Play along with backing tracks</li>
@@ -78,13 +80,13 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
           </section>
 
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Course Curriculum</h2>
+            <h2 className={styles.sectionTitle}>{t('courseDetail.curriculum')}</h2>
             <div className={styles.curriculumList}>
               {[1, 2, 3, 4, 5].map((lesson) => (
                 <div key={lesson} className={styles.lessonItem}>
                   <div className={styles.lessonInfo}>
                     <PlayCircle size={20} className={styles.lessonIcon} />
-                    <span>Lesson {lesson}: Fundamentals Part {lesson}</span>
+                    <span>{t('courseDetail.lesson')} {lesson}: Fundamentals Part {lesson}</span>
                   </div>
                   <span className={styles.lessonDuration}>10:00</span>
                 </div>
@@ -113,11 +115,11 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
               </button>
               
               <div className={styles.includes}>
-                <h4>This course includes:</h4>
+                <h4>{t('courseDetail.includes')}</h4>
                 <ul>
-                  <li><Video size={16} /> {course.duration} on-demand video</li>
-                  <li><FileText size={16} /> 10+ PDF Resources & Tabs</li>
-                  <li><Clock size={16} /> Full lifetime access</li>
+                  <li><Video size={16} /> {course.duration} {t('courseDetail.video')}</li>
+                  <li><FileText size={16} /> {t('courseDetail.resources')}</li>
+                  <li><Clock size={16} /> {t('courseDetail.lifetime')}</li>
                 </ul>
               </div>
             </div>

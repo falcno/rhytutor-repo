@@ -31,7 +31,7 @@ export default function StudentDashboard() {
       </div>
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Continue Learning</h2>
+        <h2 className={styles.sectionTitle}>{t('dashboard.continueLearning')}</h2>
         <div className={styles.courseGrid}>
           {enrolledCourses.map(courseRaw => {
              const title = language === 'TR' ? courseRaw.titleTr : courseRaw.titleEn;
@@ -40,12 +40,12 @@ export default function StudentDashboard() {
                <img src={courseRaw.thumbnail} alt={title} className={styles.thumbnail} />
                <div className={styles.progressContent}>
                  <h3 className={styles.courseTitle}>{title}</h3>
-                 <p className={styles.progressText}>Lesson 4 of {courseRaw.lessonCount}</p>
+                 <p className={styles.progressText}>{t('dashboard.lessonProgress') ? t('dashboard.lessonProgress').replace('{n}', '4').replace('{m}', String(courseRaw.lessonCount)) : `Lesson 4 of ${courseRaw.lessonCount}`}</p>
                  <div className={styles.progressBar}>
                    <div className={styles.progressFill} style={{ width: '25%' }}></div>
                  </div>
                  <a href={`/player/${courseRaw.id}`} className={styles.resumeBtn}>
-                   Resume Course
+                   {t('dashboard.resumeCourse')}
                  </a>
                </div>
              </div>
@@ -55,7 +55,7 @@ export default function StudentDashboard() {
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Recent Feedback</h2>
+        <h2 className={styles.sectionTitle}>{t('dashboard.recentFeedback')}</h2>
         <div className={styles.feedbackList}>
           <div className={styles.feedbackItem}>
              <div className={styles.feedbackHeader}>

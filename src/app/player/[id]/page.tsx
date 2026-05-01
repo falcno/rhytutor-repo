@@ -10,7 +10,7 @@ import Metronome from '@/components/Metronome';
 import { useI18n } from '@/contexts/I18nContext';
 
 export default function PlayerPage({ params }: { params: { id: string } }) {
-  const { language } = useI18n();
+  const { language, t } = useI18n();
   const { user } = useAuth();
   const { courses } = useData();
   const courseRaw = courses.find(c => c.id === params.id);
@@ -68,7 +68,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
       <div className={styles.mainContent}>
         <div className={styles.videoHeader}>
           <Link href="/student-dashboard" className={styles.backBtn}>
-            <ChevronLeft size={20} /> Back to Dashboard
+            <ChevronLeft size={20} /> {t('player.backToDashboard')}
           </Link>
           <h1 className={styles.courseTitle}>{course.title}</h1>
         </div>
@@ -91,41 +91,41 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
               className={`${styles.tab} ${activeTab === 'materials' ? styles.tabActive : ''}`}
               onClick={() => setActiveTab('materials')}
             >
-              <FileText size={18} /> Materials
+              <FileText size={18} /> {t('player.materials')}
             </button>
             <button 
               className={`${styles.tab} ${activeTab === 'metronome' ? styles.tabActive : ''}`}
               onClick={() => setActiveTab('metronome')}
             >
-              Metronome
+              {t('player.metronome')}
             </button>
             <button 
               className={`${styles.tab} ${activeTab === 'practice' ? styles.tabActive : ''}`}
               onClick={() => setActiveTab('practice')}
             >
-              <UploadCloud size={18} /> Submit Practice
+              <UploadCloud size={18} /> {t('player.submitPractice')}
             </button>
             <button 
               className={`${styles.tab} ${activeTab === 'comments' ? styles.tabActive : ''}`}
               onClick={() => setActiveTab('comments')}
             >
-              <MessageSquare size={18} /> Comments
+              <MessageSquare size={18} /> {t('player.comments')}
             </button>
           </div>
 
           <div className={styles.tabContent}>
             {activeTab === 'materials' && (
               <div className={styles.materialsTab}>
-                <h3>Lesson Materials</h3>
+                <h3>{t('player.materials')}</h3>
                 <div className={styles.materialItem}>
                   <FileText size={20} className={styles.materialIcon} />
                   <span>Lesson_{activeLesson}_Notes.pdf</span>
-                  <button className={styles.downloadBtn}>Download</button>
+                  <button className={styles.downloadBtn}>{t('player.download')}</button>
                 </div>
                 <div className={styles.materialItem}>
                   <FileText size={20} className={styles.materialIcon} />
                   <span>Backing_Track_120bpm.mp3</span>
-                  <button className={styles.downloadBtn}>Download</button>
+                  <button className={styles.downloadBtn}>{t('player.download')}</button>
                 </div>
               </div>
             )}
@@ -138,30 +138,30 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
 
             {activeTab === 'practice' && (
               <div className={styles.practiceTab}>
-                <h3>Submit Practice for Lesson {activeLesson}</h3>
-                <p className={styles.practiceHint}>Upload a video or audio recording of your practice for instructor feedback.</p>
+                <h3>{t('player.submitTitle')} {activeLesson}</h3>
+                <p className={styles.practiceHint}>{t('player.uploadHint')}</p>
                 
                 {submissionStatus === 'success' ? (
                   <div className={styles.successMessage}>
                     <CheckCircle size={32} />
-                    <p>Submission successful! Your instructor will review it soon.</p>
+                    <p>{t('player.success')}</p>
                   </div>
                 ) : (
                   <form className={styles.practiceForm} onSubmit={handlePracticeSubmit}>
                     <div className={styles.fileDropZone}>
                       <UploadCloud size={32} className={styles.dropIcon} />
-                      <p>Drag and drop your file here, or click to browse</p>
+                      <p>{t('player.dropHint')}</p>
                       <input type="file" className={styles.fileInput} accept="video/*,audio/*" required />
                     </div>
                     
                     <textarea 
-                      placeholder="Add a note for your instructor (e.g. 'I struggled with the transition at 1:20')" 
+                      placeholder={t('player.notePlaceholder')} 
                       className={styles.noteInput}
                       rows={3}
                     />
                     
                     <button type="submit" className={styles.submitBtn} disabled={submissionStatus === 'uploading'}>
-                      {submissionStatus === 'uploading' ? 'Uploading...' : 'Submit for Feedback'}
+                      {submissionStatus === 'uploading' ? t('player.uploading') : t('player.submitBtn')}
                     </button>
                   </form>
                 )}
@@ -170,7 +170,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
 
             {activeTab === 'comments' && (
               <div className={styles.commentsTab}>
-                <h3>Discussion</h3>
+                <h3>{t('player.discussion')}</h3>
                 <div className={styles.commentList}>
                   {comments.map(c => (
                     <div key={c.id} className={styles.commentItem}>
@@ -188,7 +188,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
                   <form className={styles.commentForm} onSubmit={handleCommentSubmit}>
                     <input 
                       type="text" 
-                      placeholder="Add a comment..." 
+                      placeholder={t('player.commentPlaceholder')} 
                       className={styles.commentInput}
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
@@ -198,7 +198,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
                     </button>
                   </form>
                 ) : (
-                  <p className={styles.loginPrompt}>Please log in to leave a comment.</p>
+                  <p className={styles.loginPrompt}>{t('player.loginPrompt')}</p>
                 )}
               </div>
             )}
@@ -208,7 +208,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
 
       <div className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
-          <h2>Course Content</h2>
+          <h2>{t('player.courseContent')}</h2>
         </div>
         <div className={styles.lessonList}>
           {lessons.map(lesson => (

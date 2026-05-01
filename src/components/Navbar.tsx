@@ -49,7 +49,7 @@ export default function Navbar() {
 
           {user && user.isAdmin && (
             <Link href="/admin-dashboard" className={styles.link}>
-              Admin Panel
+              {t('nav.adminPanel')}
             </Link>
           )}
         </div>

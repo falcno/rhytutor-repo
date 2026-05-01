@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useI18n } from '@/contexts/I18nContext';
 import styles from './LoginModal.module.css';
 
 interface LoginModalProps {
@@ -13,6 +14,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
+  const { t } = useI18n();
 
   if (!isOpen) return null;
 
@@ -24,7 +26,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     if (success) {
       onClose();
     } else {
-      setError('Invalid username or password.');
+      setError(t('auth.error'));
     }
   };
 
@@ -35,23 +37,23 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           <X size={20} />
         </button>
         
-        <h2 className={styles.title}>Login</h2>
+        <h2 className={styles.title}>{t('auth.login')}</h2>
         
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">{t('auth.username')}</label>
             <input 
               type="text" 
               id="username" 
               value={username} 
               onChange={(e) => setUsername(e.target.value)} 
               required 
-              placeholder="e.g. jenar.kinik01 or ahmet.yilmaz"
+              placeholder={t('auth.usernamePlaceholder')}
             />
           </div>
           
           <div className={styles.formGroup}>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t('auth.password')}</label>
             <input 
               type="password" 
               id="password" 
@@ -64,7 +66,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           {error && <p className={styles.error}>{error}</p>}
           
           <button type="submit" className={styles.submitBtn}>
-            Login
+            {t('auth.login')}
           </button>
         </form>
       </div>

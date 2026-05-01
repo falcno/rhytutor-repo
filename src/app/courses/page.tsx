@@ -28,7 +28,7 @@ export default function CoursesPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>{t('nav.courses')}</h1>
-        <p className={styles.subtitle}>Explore our premium collection of music courses.</p>
+        <p className={styles.subtitle}>{t('courses.subtitle')}</p>
       </div>
 
       <div className={styles.filters}>
@@ -66,7 +66,7 @@ export default function CoursesPage() {
           ))
         ) : (
           <div className={styles.emptyState}>
-            <p>No courses found matching your criteria.</p>
+            <p>{t('courses.empty')}</p>
           </div>
         )}
       </div>
