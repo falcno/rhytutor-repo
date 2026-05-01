@@ -4,12 +4,13 @@ import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useI18n } from '@/contexts/I18nContext';
 import CourseCard from '@/components/CourseCard';
-import { mockCourses } from '@/lib/mockData';
+import { useData } from '@/contexts/DataContext';
 import styles from './page.module.css';
 
 export default function StudentDashboard() {
   const { user } = useAuth();
   const { t, language } = useI18n();
+  const { courses } = useData();
 
   if (!user || user.role !== 'STUDENT') {
     return (
@@ -20,7 +21,7 @@ export default function StudentDashboard() {
   }
 
   // Mock enrolled courses (first two from mock data)
-  const enrolledCourses = mockCourses.slice(0, 2);
+  const enrolledCourses = courses.filter(c => c.status !== 'pending').slice(0, 2);
 
   return (
     <div className={styles.container}>

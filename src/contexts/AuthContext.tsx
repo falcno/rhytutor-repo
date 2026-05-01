@@ -13,7 +13,7 @@ export interface User {
   isAdmin?: boolean;
 }
 
-const USERS_DB: Record<string, { password: string; user: User }> = {
+export const USERS_DB: Record<string, { password: string; user: User }> = {
   'ahmet.yilmaz': {
     password: '123456',
     user: { id: 'student-1', name: 'Ahmet Yılmaz', email: 'ahmet@example.com', role: 'STUDENT', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=ahmet' }
@@ -36,7 +36,7 @@ const USERS_DB: Record<string, { password: string; user: User }> = {
   },
   'bakugan': {
     password: '013169',
-    user: { id: 'admin-1', name: 'Bakugan', email: 'admin@example.com', role: 'INSTRUCTOR', isAdmin: true, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=bakugan' }
+    user: { id: 'admin-1', name: 'Batuhan Akyazı', email: 'admin@example.com', role: 'INSTRUCTOR', isAdmin: true, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=bakugan' }
   }
 };
 

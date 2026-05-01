@@ -6,10 +6,11 @@ import { useI18n } from '@/contexts/I18nContext';
 import styles from './page.module.css';
 import { Users, DollarSign, BookOpen, Video, PlayCircle, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
-import { mockCourses } from '@/lib/mockData';
+import { useData } from '@/contexts/DataContext';
 
 export default function InstructorDashboard() {
   const { user } = useAuth();
+  const { courses } = useData();
   const { t, language } = useI18n();
   const [reviewingId, setReviewingId] = useState<number | null>(null);
 
@@ -35,7 +36,7 @@ export default function InstructorDashboard() {
     setReviewingId(null);
   };
 
-  const instructorCourses = mockCourses.filter(c => c.instructor === user.name);
+  const instructorCourses = courses.filter(c => c.instructor === user.name);
 
   return (
     <div className={styles.container}>

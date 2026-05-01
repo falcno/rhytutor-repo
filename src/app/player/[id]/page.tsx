@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { mockCourses } from '@/lib/mockData';
+import { useData } from '@/contexts/DataContext';
 import styles from './page.module.css';
 import { PlayCircle, CheckCircle, FileText, UploadCloud, ChevronLeft, MessageSquare, Send } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -12,7 +12,8 @@ import { useI18n } from '@/contexts/I18nContext';
 export default function PlayerPage({ params }: { params: { id: string } }) {
   const { language } = useI18n();
   const { user } = useAuth();
-  const courseRaw = mockCourses.find(c => c.id === params.id);
+  const { courses } = useData();
+  const courseRaw = courses.find(c => c.id === params.id);
   const [activeTab, setActiveTab] = useState<'materials' | 'metronome' | 'practice' | 'comments'>('materials');
   const [activeLesson, setActiveLesson] = useState(1);
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'uploading' | 'success'>('idle');

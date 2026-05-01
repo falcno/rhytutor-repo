@@ -101,3 +101,90 @@
   background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.tabBtn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tabActive {
+  color: var(--primary);
+  background-color: rgba(187, 134, 252, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table th {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.table td {
+  color: var(--text-primary);
+}
+
+.roleSelect {
+  background-color: var(--background);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.approveBtn {
+  background-color: var(--secondary);
+  color: #000;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badgePending {
+  background-color: rgba(207, 102, 121, 0.1);
+  color: var(--error);
+}
+
+.badgeApproved {
+  background-color: rgba(3, 218, 198, 0.1);
+  color: var(--secondary);
+}

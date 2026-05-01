@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { mockCourses } from '@/lib/mockData';
 import { useAuth } from '@/contexts/AuthContext';
+import { useData } from '@/contexts/DataContext';
 import { useI18n } from '@/contexts/I18nContext';
 import styles from './page.module.css';
 import { Star, Clock, Video, FileText, Check, PlayCircle } from 'lucide-react';
@@ -12,10 +12,11 @@ import CheckoutModal from '@/components/CheckoutModal';
 export default function CourseDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const { user, login } = useAuth();
+  const { courses } = useData();
   const { t, language } = useI18n();
   const [showCheckout, setShowCheckout] = useState(false);
   
-  const courseRaw = mockCourses.find(c => c.id === params.id);
+  const courseRaw = courses.find(c => c.id === params.id);
 
   if (!courseRaw) {
     return <div className={styles.container}>Course not found</div>;

@@ -4,11 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import { useI18n } from '@/contexts/I18nContext';
 import CourseCard from '@/components/CourseCard';
-import { mockCourses } from '@/lib/mockData';
+import { useData } from '@/contexts/DataContext';
 import styles from './page.module.css';
 
 export default function Home() {
   const { t } = useI18n();
+  const { courses } = useData();
 
   return (
     <div className={styles.container}>
@@ -31,7 +32,7 @@ export default function Home() {
           <Link href="/courses" className={styles.viewAll}>View all</Link>
         </div>
         <div className={styles.courseGrid}>
-          {mockCourses.map((course) => (
+          {courses.filter(c => c.status !== 'pending').map((course) => (
             <CourseCard key={course.id} {...course} />
           ))}
         </div>

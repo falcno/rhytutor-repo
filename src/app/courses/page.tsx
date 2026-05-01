@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useI18n } from '@/contexts/I18nContext';
 import CourseCard from '@/components/CourseCard';
-import { mockCourses } from '@/lib/mockData';
+import { useData } from '@/contexts/DataContext';
 import styles from './page.module.css';
 import { Search, Filter } from 'lucide-react';
 
@@ -11,10 +11,12 @@ const INSTRUMENTS = ['All', 'Guitar', 'Piano', 'Vocal', 'Drums', 'Production'];
 
 export default function CoursesPage() {
   const { t } = useI18n();
+  const { courses } = useData();
   const [search, setSearch] = useState('');
   const [selectedInstrument, setSelectedInstrument] = useState('All');
 
-  const filteredCourses = mockCourses.filter(course => {
+  const filteredCourses = courses.filter(course => {
+    if (course.status === 'pending') return false;
     const matchesSearch = course.titleEn.toLowerCase().includes(search.toLowerCase()) || 
                           course.titleTr.toLowerCase().includes(search.toLowerCase()) ||
                           course.instructor.toLowerCase().includes(search.toLowerCase());
