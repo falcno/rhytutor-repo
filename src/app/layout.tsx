@@ -9,7 +9,7 @@ import Navbar from '@/components/Navbar';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Rhytutor - Music Learning Platform',
+  title: 'Riffly - Music Learning Platform',
   description: 'Learn from the best musicians in the world.',
 };
 

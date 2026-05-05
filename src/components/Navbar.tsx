@@ -22,7 +22,7 @@ export default function Navbar() {
       <div className={styles.container}>
         <Link href="/" className={styles.brand}>
           <Music className={styles.brandIcon} size={28} />
-          <span className={styles.brandName}>Rhytutor</span>
+          <span className={styles.brandName}>Riffly</span>
         </Link>
 
         <div className={styles.navLinks}>
