@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { useI18n } from '@/contexts/I18nContext';
 import styles from './Navbar.module.css';
-import { Music, Globe, LogOut, User, Activity, ChevronDown, ChevronUp } from 'lucide-react';
+import { Music, Globe, LogOut, User, Activity, ChevronDown, ChevronUp, Search, ShoppingCart, Settings, Edit } from 'lucide-react';
 import LoginModal from './LoginModal';
 import Metronome from './Metronome';
 import Tuner from './Tuner';
@@ -15,6 +15,7 @@ export default function Navbar() {
   const { language, setLanguage, t } = useI18n();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [activeTool, setActiveTool] = useState<'metronome' | 'tuner' | null>(null);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const toggleTool = (tool: 'metronome' | 'tuner') => {
     setActiveTool(activeTool === tool ? null : tool);
@@ -56,6 +57,9 @@ export default function Navbar() {
           <Link href="/courses" className={styles.link}>
             {t('nav.courses')}
           </Link>
+          <Link href="/instruments" className={styles.link}>
+            Enstrüman listesi
+          </Link>
 
           {user && role === 'STUDENT' && (
             <>
@@ -79,9 +83,28 @@ export default function Navbar() {
               {t('nav.adminPanel')}
             </Link>
           )}
+
+          <Link href="/contact" className={styles.link}>
+            İletişim
+          </Link>
+          <Link href="/faq" className={styles.link}>
+            S.S.S.
+          </Link>
+          <Link href="/complaints" className={styles.link}>
+            Şikayet
+          </Link>
         </div>
 
         <div className={styles.actions}>
+          <div className={styles.searchContainer}>
+            <Search size={18} className={styles.searchIcon} />
+            <input type="text" placeholder="Ara..." className={styles.searchInput} />
+          </div>
+
+          <Link href="/cart" className={styles.iconButton} aria-label="Cart">
+            <ShoppingCart size={20} />
+          </Link>
+
           <button onClick={toggleLanguage} className={styles.iconButton} aria-label="Toggle Language">
             <Globe size={20} />
             <span className={styles.langText}>{language}</span>
@@ -94,14 +117,32 @@ export default function Navbar() {
               </button>
             </div>
           ) : (
-            <div className={styles.userMenu}>
-              <div className={styles.userInfo}>
+            <div className={styles.userMenuWrapper}>
+              <div 
+                className={styles.userInfo} 
+                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+              >
                 <img src={user.avatar} alt="Avatar" className={styles.avatar} />
                 <span className={styles.userName}>{user.name}</span>
+                {isUserMenuOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </div>
-              <button onClick={logout} className={styles.iconButton} aria-label="Logout">
-                <LogOut size={20} />
-              </button>
+              
+              {isUserMenuOpen && (
+                <div className={styles.userDropdown}>
+                  <Link href="/profile/edit" className={styles.dropdownItem} onClick={() => setIsUserMenuOpen(false)}>
+                    <Edit size={16} />
+                    <span>Profil düzenle</span>
+                  </Link>
+                  <Link href="/settings" className={styles.dropdownItem} onClick={() => setIsUserMenuOpen(false)}>
+                    <Settings size={16} />
+                    <span>Hesap ayarları</span>
+                  </Link>
+                  <button onClick={() => { logout(); setIsUserMenuOpen(false); }} className={styles.dropdownItem}>
+                    <LogOut size={16} />
+                    <span>Çıkış Yap</span>
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
