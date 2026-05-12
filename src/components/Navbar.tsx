@@ -55,10 +55,13 @@ export default function Navbar() {
 
         <div className={styles.navLinks}>
           <Link href="/courses" className={styles.link}>
-            {t('nav.courses')}
+            Dersler
           </Link>
-          <Link href="/instruments" className={styles.link}>
-            Enstrüman listesi
+          <Link href="/about" className={styles.link}>
+            Hakkında
+          </Link>
+          <Link href="/faq" className={styles.link}>
+            S.S.S.
           </Link>
 
           {user && role === 'STUDENT' && (
@@ -83,16 +86,6 @@ export default function Navbar() {
               {t('nav.adminPanel')}
             </Link>
           )}
-
-          <Link href="/contact" className={styles.link}>
-            İletişim
-          </Link>
-          <Link href="/faq" className={styles.link}>
-            S.S.S.
-          </Link>
-          <Link href="/complaints" className={styles.link}>
-            Şikayet
-          </Link>
         </div>
 
         <div className={styles.actions}>
