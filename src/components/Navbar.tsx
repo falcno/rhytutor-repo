@@ -29,7 +29,7 @@ export default function Navbar() {
       <div className={styles.container}>
         <div className={styles.brandGroup}>
           <Link href="/" className={styles.brand}>
-            <Music className={styles.brandIcon} size={28} />
+            <img src="/logo.png" alt="Riffly" className={styles.logoImg} />
             <span className={styles.brandName}>Riffly</span>
           </Link>
 

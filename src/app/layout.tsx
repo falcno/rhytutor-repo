@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Riffly - Music Learning Platform',
   description: 'Learn from the best musicians in the world.',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
