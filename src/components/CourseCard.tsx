@@ -15,6 +15,7 @@ interface CourseCardProps {
   duration: string;
   lessonCount: number;
   instrument: string;
+  progress?: number;
 }
 
 export default function CourseCard({
@@ -28,6 +29,7 @@ export default function CourseCard({
   duration,
   lessonCount,
   instrument,
+  progress,
 }: CourseCardProps) {
   const { t, language } = useI18n();
   const title = language === 'TR' ? titleTr : titleEn;
@@ -36,15 +38,23 @@ export default function CourseCard({
     <Link href={`/courses/${id}`} className={styles.card}>
       <div className={styles.thumbnailWrapper}>
         <img src={thumbnail} alt={title} className={styles.thumbnail} />
-        <div className={styles.overlay}>
-          <PlayCircle size={48} className={styles.playIcon} />
-        </div>
+        {progress !== undefined ? (
+          <div className={styles.cardProgressBar}>
+            <div className={styles.cardProgressFill} style={{ width: `${progress}%` }}></div>
+          </div>
+        ) : (
+          <div className={styles.overlay}>
+            <PlayCircle size={48} className={styles.playIcon} />
+          </div>
+        )}
         <span className={styles.badge}>{instrument}</span>
       </div>
       
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.instructor}>{instructor}</p>
+        <Link href={`/instructors/${encodeURIComponent(instructor)}`} className={styles.instructorLink}>
+          {instructor}
+        </Link>
         
         <div className={styles.stats}>
           <div className={styles.statItem}>

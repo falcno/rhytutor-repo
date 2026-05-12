@@ -4,7 +4,9 @@ import './globals.css';
 import { I18nProvider } from '@/contexts/I18nContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { DataProvider } from '@/contexts/DataContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import Navbar from '@/components/Navbar';
+import ChatWidget from '@/components/ChatWidget';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,18 +26,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <I18nProvider>
-          <AuthProvider>
-            <DataProvider>
-              <div className="app-container">
-                <Navbar />
-                <main className="main-content">
-                  {children}
-                </main>
-              </div>
-            </DataProvider>
-          </AuthProvider>
-        </I18nProvider>
+        <ThemeProvider>
+          <I18nProvider>
+            <AuthProvider>
+              <DataProvider>
+                <div className="app-container">
+                  <Navbar />
+                  <main className="main-content">
+                    {children}
+                  </main>
+                  <ChatWidget />
+                </div>
+              </DataProvider>
+            </AuthProvider>
+          </I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { useI18n } from '@/contexts/I18nContext';
 import styles from './Navbar.module.css';
-import { Music, Globe, LogOut, User, Activity, ChevronDown, ChevronUp, Search, ShoppingCart, Settings, Edit } from 'lucide-react';
+import { Music, Globe, LogOut, User, Activity, ChevronDown, ChevronUp, Search, ShoppingCart, Settings, Edit, Sun, Moon, Bell } from 'lucide-react';
+import { useTheme } from '@/contexts/ThemeContext';
 import LoginModal from './LoginModal';
 import Metronome from './Metronome';
 import Tuner from './Tuner';
@@ -16,6 +17,8 @@ export default function Navbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [activeTool, setActiveTool] = useState<'metronome' | 'tuner' | null>(null);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   const toggleTool = (tool: 'metronome' | 'tuner') => {
     setActiveTool(activeTool === tool ? null : tool);
@@ -97,6 +100,29 @@ export default function Navbar() {
           <Link href="/cart" className={styles.iconButton} aria-label="Cart">
             <ShoppingCart size={20} />
           </Link>
+
+          <button onClick={toggleTheme} className={styles.iconButton} aria-label="Toggle Theme">
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
+          <div className={styles.notificationWrapper}>
+            <button onClick={() => setIsNotificationsOpen(!isNotificationsOpen)} className={styles.iconButton} aria-label="Notifications">
+              <Bell size={20} />
+              <span className={styles.notificationBadge}></span>
+            </button>
+            {isNotificationsOpen && (
+              <div className={styles.notificationDropdown}>
+                <div className={styles.notificationItem}>
+                  <p>Batuhan ödevine yorum yaptı.</p>
+                  <span className={styles.notificationTime}>2 saat önce</span>
+                </div>
+                <div className={styles.notificationItem}>
+                  <p>Yeni kurs eklendi: İleri Seviye Slap Bas</p>
+                  <span className={styles.notificationTime}>1 gün önce</span>
+                </div>
+              </div>
+            )}
+          </div>
 
           <button onClick={toggleLanguage} className={styles.iconButton} aria-label="Toggle Language">
             <Globe size={20} />
