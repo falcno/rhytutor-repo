@@ -55,13 +55,13 @@ export default function Navbar() {
 
         <div className={styles.navLinks}>
           <Link href="/courses" className={styles.link}>
-            Dersler
+            {t('nav.courses')}
           </Link>
           <Link href="/about" className={styles.link}>
-            Hakkında
+            {t('nav.about')}
           </Link>
           <Link href="/faq" className={styles.link}>
-            S.S.S.
+            {t('nav.faq')}
           </Link>
 
           {user && role === 'STUDENT' && (
