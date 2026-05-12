@@ -8,43 +8,126 @@ import styles from './Tuner.module.css';
 const INSTRUMENTS = {
   GUITAR_6: {
     name: 'tuner.guitar6',
-    notes: [
-      { note: 'E', freq: 82.41, oct: 2 },
-      { note: 'A', freq: 110.00, oct: 2 },
-      { note: 'D', freq: 146.83, oct: 3 },
-      { note: 'G', freq: 196.00, oct: 3 },
-      { note: 'B', freq: 246.94, oct: 3 },
-      { note: 'E', freq: 329.63, oct: 4 },
-    ]
+    tunings: {
+      STANDARD: {
+        name: 'tuning.standard',
+        notes: [
+          { note: 'E', freq: 82.41, oct: 2 },
+          { note: 'A', freq: 110.00, oct: 2 },
+          { note: 'D', freq: 146.83, oct: 3 },
+          { note: 'G', freq: 196.00, oct: 3 },
+          { note: 'B', freq: 246.94, oct: 3 },
+          { note: 'E', freq: 329.63, oct: 4 },
+        ]
+      },
+      DROP_D: {
+        name: 'tuning.dropD',
+        notes: [
+          { note: 'D', freq: 73.42, oct: 2 },
+          { note: 'A', freq: 110.00, oct: 2 },
+          { note: 'D', freq: 146.83, oct: 3 },
+          { note: 'G', freq: 196.00, oct: 3 },
+          { note: 'B', freq: 246.94, oct: 3 },
+          { note: 'E', freq: 329.63, oct: 4 },
+        ]
+      },
+      DROP_C: {
+        name: 'tuning.dropC',
+        notes: [
+          { note: 'C', freq: 65.41, oct: 2 },
+          { note: 'G', freq: 98.00, oct: 2 },
+          { note: 'C', freq: 130.81, oct: 3 },
+          { note: 'F', freq: 174.61, oct: 3 },
+          { note: 'A', freq: 220.00, oct: 3 },
+          { note: 'D', freq: 293.66, oct: 4 },
+        ]
+      },
+      DADGAD: {
+        name: 'tuning.dadgad',
+        notes: [
+          { note: 'D', freq: 73.42, oct: 2 },
+          { note: 'A', freq: 110.00, oct: 2 },
+          { note: 'D', freq: 146.83, oct: 3 },
+          { note: 'G', freq: 196.00, oct: 3 },
+          { note: 'A', freq: 220.00, oct: 3 },
+          { note: 'D', freq: 293.66, oct: 4 },
+        ]
+      },
+      OPEN_G: {
+        name: 'tuning.openG',
+        notes: [
+          { note: 'D', freq: 73.42, oct: 2 },
+          { note: 'G', freq: 98.00, oct: 2 },
+          { note: 'D', freq: 146.83, oct: 3 },
+          { note: 'G', freq: 196.00, oct: 3 },
+          { note: 'B', freq: 246.94, oct: 3 },
+          { note: 'D', freq: 293.66, oct: 4 },
+        ]
+      }
+    }
   },
-  GUITAR_5: {
-    name: 'tuner.guitar5',
-    notes: [
-      { note: 'B', freq: 61.74, oct: 1 },
-      { note: 'E', freq: 82.41, oct: 2 },
-      { note: 'A', freq: 110.00, oct: 2 },
-      { note: 'D', freq: 146.83, oct: 3 },
-      { note: 'G', freq: 196.00, oct: 3 },
-    ]
+  BASS_4: {
+    name: 'tuner.bass4',
+    tunings: {
+      STANDARD: {
+        name: 'tuning.standard',
+        notes: [
+          { note: 'E', freq: 41.20, oct: 1 },
+          { note: 'A', freq: 55.00, oct: 1 },
+          { note: 'D', freq: 73.42, oct: 2 },
+          { note: 'G', freq: 98.00, oct: 2 },
+        ]
+      },
+      DROP_D: {
+        name: 'tuning.dropD',
+        notes: [
+          { note: 'D', freq: 36.71, oct: 1 },
+          { note: 'A', freq: 55.00, oct: 1 },
+          { note: 'D', freq: 73.42, oct: 2 },
+          { note: 'G', freq: 98.00, oct: 2 },
+        ]
+      }
+    }
+  },
+  BASS_5: {
+    name: 'tuner.bass5',
+    tunings: {
+      STANDARD: {
+        name: 'tuning.standard',
+        notes: [
+          { note: 'B', freq: 30.87, oct: 0 },
+          { note: 'E', freq: 41.20, oct: 1 },
+          { note: 'A', freq: 55.00, oct: 1 },
+          { note: 'D', freq: 73.42, oct: 2 },
+          { note: 'G', freq: 98.00, oct: 2 },
+        ]
+      }
+    }
   },
   UKULELE: {
     name: 'tuner.ukulele',
-    notes: [
-      { note: 'G', freq: 392.00, oct: 4 },
-      { note: 'C', freq: 261.63, oct: 4 },
-      { note: 'E', freq: 329.63, oct: 4 },
-      { note: 'A', freq: 440.00, oct: 4 },
-    ]
+    tunings: {
+      STANDARD: {
+        name: 'tuning.standard',
+        notes: [
+          { note: 'G', freq: 392.00, oct: 4 },
+          { note: 'C', freq: 261.63, oct: 4 },
+          { note: 'E', freq: 329.63, oct: 4 },
+          { note: 'A', freq: 440.00, oct: 4 },
+        ]
+      }
+    }
   }
 };
 
 export default function Tuner() {
   const { t } = useI18n();
   const [instrument, setInstrument] = useState<keyof typeof INSTRUMENTS>('GUITAR_6');
+  const [tuning, setTuning] = useState<string>('STANDARD');
   const [isListening, setIsListening] = useState(false);
   const [pitch, setPitch] = useState<number | null>(null);
   const [closestNote, setClosestNote] = useState<any>(null);
-  const [diff, setDiff] = useState(0); // cents difference
+  const [diff, setDiff] = useState(0); 
   
   const audioCtxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
@@ -61,7 +144,7 @@ export default function Tuner() {
       
       const source = audioCtx.createMediaStreamSource(stream);
       const analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 2048;
+      analyser.fftSize = 4096; // Increased FFT size for better low-frequency detection (bass)
       source.connect(analyser);
       analyserRef.current = analyser;
       
@@ -101,11 +184,12 @@ export default function Tuner() {
   };
 
   const findClosestNote = (freq: number) => {
-    const notes = INSTRUMENTS[instrument].notes;
+    const tunings = INSTRUMENTS[instrument].tunings as any;
+    const notes = tunings[tuning].notes;
     let minDiff = Infinity;
     let closest = null;
 
-    notes.forEach(n => {
+    notes.forEach((n: { freq: number; note: string; oct: number }) => {
       const difference = 1200 * Math.log2(freq / n.freq);
       if (Math.abs(difference) < Math.abs(minDiff)) {
         minDiff = difference;
@@ -113,7 +197,6 @@ export default function Tuner() {
       }
     });
 
-    // If within 50 cents, it's likely targeting that note
     if (Math.abs(minDiff) < 100) {
       setClosestNote(closest);
       setDiff(minDiff);
@@ -123,7 +206,6 @@ export default function Tuner() {
   };
 
   const autoCorrelate = (buffer: Float32Array, sampleRate: number) => {
-    // Perform a simple autocorrelation of the provided buffer.
     const SIZE = buffer.length;
     let rms = 0;
 
@@ -131,7 +213,7 @@ export default function Tuner() {
       rms += buffer[i] * buffer[i];
     }
     rms = Math.sqrt(rms / SIZE);
-    if (rms < 0.01) return -1; // Not enough signal
+    if (rms < 0.01) return -1;
 
     let r1 = 0, r2 = SIZE - 1, thres = 0.2;
     for (let i = 0; i < SIZE / 2; i++) {
@@ -162,7 +244,6 @@ export default function Tuner() {
     }
     let T0 = maxpos;
 
-    // Interpolation for better accuracy
     const x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
     const a = (x1 + x3 - 2 * x2) / 2;
     const b = (x3 - x1) / 2;
@@ -171,20 +252,38 @@ export default function Tuner() {
     return sampleRate / T0;
   };
 
+  const handleInstrumentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newInst = e.target.value as keyof typeof INSTRUMENTS;
+    setInstrument(newInst);
+    setTuning('STANDARD'); // Reset to standard when changing instrument
+  };
+
   return (
     <div className={styles.tuner}>
       <div className={styles.header}>
         <div className={styles.titleGroup}>
           <h3 className={styles.title}>{t('tools.tuner')}</h3>
-          <select 
-            value={instrument} 
-            onChange={(e) => setInstrument(e.target.value as any)}
-            className={styles.select}
-          >
-            {Object.entries(INSTRUMENTS).map(([key, value]) => (
-              <option key={key} value={key}>{t(value.name)}</option>
-            ))}
-          </select>
+          <div className={styles.selectors}>
+            <select 
+              value={instrument} 
+              onChange={handleInstrumentChange}
+              className={styles.select}
+            >
+              {Object.entries(INSTRUMENTS).map(([key, value]) => (
+                <option key={key} value={key}>{t(value.name)}</option>
+              ))}
+            </select>
+            
+            <select 
+              value={tuning} 
+              onChange={(e) => setTuning(e.target.value)}
+              className={styles.select}
+            >
+              {Object.entries(INSTRUMENTS[instrument].tunings).map(([key, value]) => (
+                <option key={key} value={key}>{t(value.name)}</option>
+              ))}
+            </select>
+          </div>
         </div>
         
         <button 
@@ -232,7 +331,7 @@ export default function Tuner() {
       </div>
 
       <div className={styles.noteList}>
-        {INSTRUMENTS[instrument].notes.map((n, i) => (
+        {(INSTRUMENTS[instrument].tunings as any)[tuning].notes.map((n: any, i: number) => (
           <div 
             key={i} 
             className={`${styles.noteItem} ${closestNote?.freq === n.freq ? styles.noteActive : ''}`}

@@ -29,6 +29,12 @@
   margin: 0;
 }
 
+.selectors {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
 .select {
   background: var(--surface-2);
   border: 1px solid var(--surface-3);
