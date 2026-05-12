@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Square, Plus, Minus } from 'lucide-react';
+import { Play, Square, Plus, Minus, Music } from 'lucide-react';
+import { useI18n } from '@/contexts/I18nContext';
 import styles from './Metronome.module.css';
 
 export default function Metronome() {
+  const { t } = useI18n();
   const [bpm, setBpm] = useState(120);
   const [isPlaying, setIsPlaying] = useState(false);
   const [beat, setBeat] = useState(0);
@@ -103,8 +105,11 @@ export default function Metronome() {
   return (
     <div className={styles.metronome}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Practice Metronome</h3>
-        <span className={styles.bpmDisplay}>{bpm} BPM</span>
+        <div className={styles.titleGroup}>
+          <Music className={styles.titleIcon} size={20} />
+          <h3 className={styles.title}>{t('tools.metronome')}</h3>
+        </div>
+        <span className={styles.bpmDisplay}><strong>{bpm}</strong> BPM</span>
       </div>
 
       <div className={styles.controls}>
@@ -125,7 +130,7 @@ export default function Metronome() {
       </div>
 
       <div className={styles.timeSignature}>
-        <label>Time Signature:</label>
+        <label className={styles.label}>{t('courseDetail.curriculum')}:</label>
         <select 
           value={beatsPerMeasure} 
           onChange={(e) => setBeatsPerMeasure(Number(e.target.value))}

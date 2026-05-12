@@ -5,6 +5,7 @@ import { I18nProvider } from '@/contexts/I18nContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { DataProvider } from '@/contexts/DataContext';
 import Navbar from '@/components/Navbar';
+import TopTools from '@/components/TopTools';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <AuthProvider>
             <DataProvider>
               <div className="app-container">
+                <TopTools />
                 <Navbar />
                 <main className="main-content">
                   {children}

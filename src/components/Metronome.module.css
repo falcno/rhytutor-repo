@@ -1,42 +1,56 @@
 .metronome {
-  background-color: var(--surface-1);
-  border: 1px solid var(--surface-2);
+  background: var(--surface-1);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  color: var(--foreground);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--surface-3);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titleIcon {
+  color: var(--primary);
 }
 
 .title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--foreground);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
 }
 
 .bpmDisplay {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--primary);
-  background-color: rgba(187, 134, 252, 0.1);
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.bpmDisplay strong {
+  font-size: 1.4rem;
+  color: var(--foreground);
 }
 
 .controls {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .adjustBtn {
-  background-color: var(--surface-2);
+  background: var(--surface-2);
   border: 1px solid var(--surface-3);
   color: var(--foreground);
   width: 36px;
@@ -50,20 +64,19 @@
 }
 
 .adjustBtn:hover:not(:disabled) {
-  background-color: var(--surface-3);
+  background: var(--surface-3);
   border-color: var(--primary);
 }
 
 .adjustBtn:disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
 .slider {
   flex: 1;
+  height: 4px;
   -webkit-appearance: none;
-  appearance: none;
-  height: 6px;
   background: var(--surface-3);
   border-radius: var(--radius-full);
   outline: none;
@@ -71,86 +84,89 @@
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  width: 18px;
+  height: 18px;
   background: var(--primary);
+  border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+  box-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
 }
 
 .timeSignature {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+}
+
+.label {
+  font-size: 0.85rem;
   color: var(--text-muted);
-  font-size: 0.875rem;
 }
 
 .select {
-  background-color: var(--surface-2);
+  background: transparent;
+  border: none;
   color: var(--foreground);
-  border: 1px solid var(--surface-3);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
   outline: none;
 }
 
 .visualizer {
   display: flex;
-  justify-content: space-around;
-  background-color: var(--surface-2);
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--surface-3);
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .beatIndicator {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: var(--surface-3);
-  transition: background-color 0.1s ease, transform 0.1s ease;
+  background: var(--surface-3);
+  transition: all 0.1s ease;
 }
 
 .beatActive {
-  background-color: var(--secondary);
-  transform: scale(1.2);
-  box-shadow: 0 0 12px rgba(3, 218, 198, 0.6);
+  background: var(--secondary);
+  transform: scale(1.3);
+  box-shadow: 0 0 15px var(--secondary);
 }
 
-.beatActive.beatFirst {
-  background-color: var(--primary);
-  box-shadow: 0 0 12px rgba(187, 134, 252, 0.6);
+.beatFirst.beatActive {
+  background: var(--primary);
+  box-shadow: 0 0 15px var(--primary);
 }
 
 .playBtn {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--surface-2);
-  color: var(--foreground);
-  border: 1px solid var(--surface-3);
-  padding: 1rem;
+  padding: 0.8rem;
+  background: var(--primary);
+  border: none;
   border-radius: var(--radius-md);
-  font-size: 1rem;
-  font-weight: 700;
+  color: white;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .playBtn:hover {
-  background-color: var(--surface-3);
+  background: var(--primary-hover);
+  transform: translateY(-2px);
 }
 
 .playBtnActive {
-  background-color: rgba(207, 102, 121, 0.1);
-  color: var(--error);
-  border-color: rgba(207, 102, 121, 0.3);
+  background: var(--error);
 }
 
 .playBtnActive:hover {
-  background-color: rgba(207, 102, 121, 0.2);
+  background: #b04e60;
 }

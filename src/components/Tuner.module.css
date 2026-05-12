@@ -1,0 +1,196 @@
+.tuner {
+  background: var(--surface-1);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  color: var(--foreground);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--surface-3);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+}
+
+.select {
+  background: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  color: var(--foreground);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.select:focus {
+  border-color: var(--primary);
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  color: var(--foreground);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.toggleBtn.active {
+  background: var(--error);
+  border-color: var(--error);
+}
+
+.toggleBtn:hover {
+  background: var(--surface-3);
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.noteContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.noteName {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  position: relative;
+}
+
+.octave {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0.5rem;
+  right: -1.2rem;
+  color: var(--text-muted);
+}
+
+.status {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.listening {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  height: 6rem;
+  display: flex;
+  align-items: center;
+}
+
+.inTune { color: var(--secondary); }
+.flat { color: var(--primary); }
+.sharp { color: var(--error); }
+
+.gauge {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.gaugeLine {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--surface-3);
+}
+
+.gaugeLine::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  bottom: -5px;
+  width: 2px;
+  background: var(--secondary);
+}
+
+.needle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  height: 80px;
+  background: var(--foreground);
+  transform-origin: bottom center;
+  transition: transform 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.centerPoint {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.noteList {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.noteItem {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border: 1px solid var(--surface-3);
+  transition: all 0.2s ease;
+}
+
+.noteItem.noteActive {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(187, 134, 252, 0.4);
+}
