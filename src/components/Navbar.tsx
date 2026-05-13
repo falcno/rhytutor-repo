@@ -8,6 +8,7 @@ import styles from './Navbar.module.css';
 import { Music, Globe, LogOut, User, Activity, ChevronDown, ChevronUp, Search, ShoppingCart, Settings, Edit, Sun, Moon, Bell } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import LoginModal from './LoginModal';
+import RegisterModal from './RegisterModal';
 import Metronome from './Metronome';
 import Tuner from './Tuner';
 
@@ -15,6 +16,7 @@ export default function Navbar() {
   const { user, role, logout } = useAuth();
   const { language, setLanguage, t } = useI18n();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [activeTool, setActiveTool] = useState<'metronome' | 'tuner' | null>(null);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
@@ -134,6 +136,9 @@ export default function Navbar() {
               <button className={styles.loginBtn} onClick={() => setIsLoginModalOpen(true)}>
                 {t('nav.login')}
               </button>
+              <button className={styles.registerBtn} onClick={() => setIsRegisterModalOpen(true)}>
+                {t('auth.register')}
+              </button>
             </div>
           ) : (
             <div className={styles.userMenuWrapper}>
@@ -167,6 +172,7 @@ export default function Navbar() {
         </div>
       </div>
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+      <RegisterModal isOpen={isRegisterModalOpen} onClose={() => setIsRegisterModalOpen(false)} />
       
       <div className={`${styles.toolDropdown} ${activeTool ? styles.open : ''}`}>
         <div className={styles.dropdownOverlay} onClick={() => setActiveTool(null)} />

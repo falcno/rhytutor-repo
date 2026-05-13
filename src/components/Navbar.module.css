@@ -105,6 +105,23 @@
   border-color: var(--primary);
 }
 
+.registerBtn {
+  background-color: var(--primary);
+  color: var(--background, #121212);
+  border: 1px solid var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.registerBtn:hover {
+  background-color: var(--primary-hover, #a462f4);
+  border-color: var(--primary-hover, #a462f4);
+}
+
 .userMenu {
   display: flex;
   align-items: center;

@@ -103,6 +103,19 @@ const translations: Translations = {
     'tuner.inTune': 'In Tune',
     'tuner.flat': 'Flat',
     'tuner.sharp': 'Sharp',
+    'auth.register': 'Sign Up',
+    'auth.nameSurname': 'Name and Surname',
+    'auth.dob': 'Date of Birth',
+    'auth.email': 'Email',
+    'auth.passwordConfirm': 'Confirm Password',
+    'auth.instrument': 'Instrument to Teach',
+    'auth.bio': 'About Yourself (Min 200 chars)',
+    'auth.studentTab': 'Student',
+    'auth.instructorTab': 'Instructor',
+    'auth.passwordsNotMatch': 'Passwords do not match.',
+    'auth.bioLengthError': 'Bio must be at least 200 characters.',
+    'auth.registerSuccess': 'Registration successful! You can now log in.',
+    'auth.usernameExists': 'This username or email is already registered.'
   },
   TR: {
     'nav.courses': 'Kurslar',
@@ -196,6 +209,19 @@ const translations: Translations = {
     'tuner.inTune': 'Akortlu',
     'tuner.flat': 'Bemol (Pes)',
     'tuner.sharp': 'Diyez (Tiz)',
+    'auth.register': 'Kayıt Ol',
+    'auth.nameSurname': 'İsim Soyisim',
+    'auth.dob': 'Doğum Tarihi',
+    'auth.email': 'E-posta',
+    'auth.passwordConfirm': 'Şifre (Tekrar)',
+    'auth.instrument': 'Eğitim Vereceğiniz Enstrüman',
+    'auth.bio': 'Kendinizi Anlatın (En az 200 karakter)',
+    'auth.studentTab': 'Öğrenci',
+    'auth.instructorTab': 'Eğitmen',
+    'auth.passwordsNotMatch': 'Şifreler eşleşmiyor.',
+    'auth.bioLengthError': 'Hakkınızdaki yazı en az 200 karakter olmalıdır.',
+    'auth.registerSuccess': 'Kayıt başarılı! Şimdi giriş yapabilirsiniz.',
+    'auth.usernameExists': 'Bu kullanıcı adı veya e-posta zaten kayıtlı.'
   }
 };
 

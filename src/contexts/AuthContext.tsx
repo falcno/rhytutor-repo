@@ -45,6 +45,7 @@ interface AuthContextType {
   role: Role;
   login: (username: string, password: string) => boolean;
   logout: () => void;
+  register: (data: Partial<User> & { username: string; password: string }) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -65,8 +66,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
   };
 
+  const register = (data: Partial<User> & { username: string; password: string }) => {
+    if (USERS_DB[data.username]) {
+      return false; // username exists
+    }
+    const newUser: User = {
+      id: `${data.role?.toLowerCase()}-${Date.now()}`,
+      name: data.name || data.username,
+      email: data.email || `${data.username}@example.com`,
+      role: data.role || 'STUDENT',
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.username}`,
+    };
+    USERS_DB[data.username] = {
+      password: data.password,
+      user: newUser
+    };
+    return true;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, role: user?.role || 'GUEST', login, logout }}>
+    <AuthContext.Provider value={{ user, role: user?.role || 'GUEST', login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );
