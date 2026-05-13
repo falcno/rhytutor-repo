@@ -11,6 +11,7 @@ interface RegisterModalProps {
 
 export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
   const [role, setRole] = useState<'STUDENT' | 'INSTRUCTOR'>('STUDENT');
+  const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [dob, setDob] = useState('');
@@ -38,13 +39,17 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
       return;
     }
 
+    // Password must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 symbol
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/;
+    if (!passwordRegex.test(password)) {
+      setError(t('auth.passwordComplexity'));
+      return;
+    }
+
     if (role === 'INSTRUCTOR' && bio.length < 200) {
       setError(t('auth.bioLengthError'));
       return;
     }
-
-    // Use email before @ as a simple username, or just the email itself
-    const username = email.split('@')[0];
 
     const successReg = register({
       username,
@@ -60,6 +65,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
       setTimeout(() => {
         onClose();
         // Reset form
+        setUsername('');
         setName('');
         setEmail('');
         setDob('');
@@ -100,6 +106,17 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
         </div>
         
         <form onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label htmlFor="reg-username">{t('auth.username')}</label>
+            <input 
+              type="text" 
+              id="reg-username" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)} 
+              required 
+            />
+          </div>
+
           <div className={styles.formGroup}>
             <label htmlFor="reg-name">{t('auth.nameSurname')}</label>
             <input 

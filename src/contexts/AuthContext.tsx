@@ -70,6 +70,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (USERS_DB[data.username]) {
       return false; // username exists
     }
+
+    // Check if email already exists
+    const emailExists = Object.values(USERS_DB).some(
+      (record) => record.user.email.toLowerCase() === data.email?.toLowerCase()
+    );
+    if (emailExists) {
+      return false;
+    }
+
     const newUser: User = {
       id: `${data.role?.toLowerCase()}-${Date.now()}`,
       name: data.name || data.username,

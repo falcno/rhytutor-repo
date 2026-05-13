@@ -115,7 +115,8 @@ const translations: Translations = {
     'auth.passwordsNotMatch': 'Passwords do not match.',
     'auth.bioLengthError': 'Bio must be at least 200 characters.',
     'auth.registerSuccess': 'Registration successful! You can now log in.',
-    'auth.usernameExists': 'This username or email is already registered.'
+    'auth.usernameExists': 'This username or email is already registered.',
+    'auth.passwordComplexity': 'Password must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 symbol.'
   },
   TR: {
     'nav.courses': 'Kurslar',
@@ -221,7 +222,8 @@ const translations: Translations = {
     'auth.passwordsNotMatch': 'Şifreler eşleşmiyor.',
     'auth.bioLengthError': 'Hakkınızdaki yazı en az 200 karakter olmalıdır.',
     'auth.registerSuccess': 'Kayıt başarılı! Şimdi giriş yapabilirsiniz.',
-    'auth.usernameExists': 'Bu kullanıcı adı veya e-posta zaten kayıtlı.'
+    'auth.usernameExists': 'Bu kullanıcı adı veya e-posta zaten kayıtlı.',
+    'auth.passwordComplexity': 'Şifre en az 1 büyük harf, 1 küçük harf, 1 sayı ve 1 özel simge içermelidir.'
   }
 };
 
